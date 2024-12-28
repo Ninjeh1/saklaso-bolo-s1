@@ -13,27 +13,25 @@
       <ul class="navbar-nav">
         <!--        ეს ყოველთვის ჩანს        -->
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Tasks</a>
+          <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Tasks</a>
         </li>
 
-        <!--        ესენი ჩანს მხოლოდ მანამ, სანამ მომხმარებელი დალოგინდება     -->
+        {% if user.is_authenticated %}
         <li class="nav-item">
-          <a class="nav-link" href="#">Login</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Register</a>
-        </li>
-
-
-        <!--        ესენი ჩანს მხოლოდ მაშინ, როცა მომხმარებელი დალოგინდება     -->
-        <li class="nav-item">
-          <a class="nav-link" href="#">Logout</a>
+          <a class="nav-link" href="{% url 'create_task' %}">Add Task</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Add Task</a>
+          <a class="nav-link" href="{% url 'logout_view' %}">Logout</a>
         </li>
 
-
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'register_view' %}">Register</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'login_view' %}">Login</a>
+        </li>
+        {%endif%}
       </ul>
     </div>
   </div>
